@@ -27,9 +27,10 @@ export const register = async (req, res, next) => {
     await sendVerificationEmail(user, verificationToken);
 
     sendTokenResponse(user, 201, res);
-  } catch (error) {
-    next(error);
-  }
+  }  catch (error) {
+  console.error("REGISTER ERROR:", error);
+  next(error);
+}
 };
 
 export const login = async (req, res, next) => {
