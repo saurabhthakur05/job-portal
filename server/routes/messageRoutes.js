@@ -1,0 +1,14 @@
+import express from 'express';
+import { getConversations, getMessages, sendMessage } from '../controllers/messageController.js';
+import { protect } from '../middleware/auth.js';
+import { upload } from '../middleware/upload.js';
+
+const router = express.Router();
+
+router.use(protect);
+
+router.get('/conversations', getConversations);
+router.get('/:userId', getMessages);
+router.post('/', upload.single('file'), sendMessage);
+
+export default router;
