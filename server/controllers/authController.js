@@ -22,9 +22,7 @@ export const register = async (req, res, next) => {
       role: role === 'recruiter' ? 'recruiter' : 'jobseeker',
     });
 
-    const verificationToken = user.getEmailVerificationToken();
-    await user.save({ validateBeforeSave: false });
-    await sendVerificationEmail(user, verificationToken);
+   
 
     sendTokenResponse(user, 201, res);
   }  catch (error) {
